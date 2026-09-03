@@ -7,13 +7,13 @@ namespace AssignmentOOP1
     internal struct Shipment
     {
         #region Fields
-        private string trackingCode;
+       // private string trackingCode; //backing field
         private string description;
         private decimal weight;
         private decimal deliveryFee;
         #endregion
         #region Properties
-        public string TrackingCode { get { return trackingCode; } }
+        public string TrackingCode { get; }
         public string Description
         {
             get { return description; }
@@ -43,6 +43,24 @@ namespace AssignmentOOP1
         }
         public DeliveryAddress Destination { get; set; }
         public decimal EstimatedCost =>DeliveryFee+(Weight*5);
+        #endregion
+        #region Constructors
+        public Shipment(string trackingCode)
+        {
+            if(string.IsNullOrWhiteSpace(trackingCode))
+            TrackingCode = trackingCode;
+            Description = "un known";
+            Weight = 1;
+            DeliveryFee = 50;
+            Destination = new DeliveryAddress("un known","un known",0);
+        }
+        public Shipment(string trackingCode,string description,decimal weight,decimal deliveryFee,DeliveryAddress destination) : this(trackingCode)
+        {
+            Description = description;
+            Weight = weight;
+            DeliveryFee = deliveryFee;
+            Destination = destination;
+        }
         #endregion
     }
 }
