@@ -62,5 +62,23 @@ namespace AssignmentOOP1
             Destination = destination;
         }
         #endregion
+        #region methods
+        public void UpdateDeliveryFee(decimal newFee)
+        {
+            if (newFee > 0)
+            DeliveryFee = newFee;
+        }
+        public void PrintShipment()
+        {
+            Console.WriteLine($"TrackingCode:{TrackingCode}");
+            Console.WriteLine($"Description:{Description}");
+            Console.WriteLine($"Weight:{Weight}");
+            Console.WriteLine($"DeliveryFee:{DeliveryFee}");
+            Console.WriteLine($"Destination:{Destination.GetFullAdress()}");
+            Console.WriteLine($"EstimatedCost:{EstimatedCost}");
+           
+            
+        }
+        #endregion
     }
 }
