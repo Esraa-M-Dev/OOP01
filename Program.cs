@@ -44,6 +44,53 @@
             //Console.WriteLine("After Modification");
             //Console.WriteLine($"originalAddress:{originalAddress.street}");//ElTahrir->not change
             //Console.WriteLine($"copiedAddress:{copiedAddress.street}"); //Orabi
+
+            //main program
+            //a-create DeliveryCenter
+            DeliveryCenter deliveryCenter = new DeliveryCenter();
+            //b-read three shipments from user
+            Shipment shipment1 = new Shipment("SH01", "Laptop", 3, 100, new DeliveryAddress("Cairo", "ElTahrir", 5));
+            Shipment shipment2 = new Shipment("SH02", "PC", 10, 100, new DeliveryAddress("Cairo", "Orabi", 2));
+            Shipment shipment3 = new Shipment("SH03", "TV", 12, 100, new DeliveryAddress("Alex", "AboQir", 2));
+
+
+            //c- add to DeliveryCenter
+            deliveryCenter.AddShipment(shipment1);
+            deliveryCenter.AddShipment(shipment2);
+            deliveryCenter.AddShipment(shipment3);
+            //d-print by integer indexer
+            Console.WriteLine("print shipments");
+          for(int i = 0; i < 3; i++)
+            {
+                deliveryCenter[i].PrintShipment();
+                Console.WriteLine("\n");
+            }
+
+            //e-enter tracking code
+            Console.Write("Enter TrackingCode: ");
+            string trackingCode = Console.ReadLine();
+            //f-search using string indexer
+            Shipment shipment = deliveryCenter[trackingCode];
+            //g-print shipment if found
+            if(shipment.TrackingCode!=null)
+               shipment.PrintShipment();
+            else
+                Console.WriteLine("shipment not found");
+
+            //h-copy struct behaviour
+            //copying struct
+            //DeliveryAddress originalAddress = new DeliveryAddress("Cairo", "ElTahrir", 5);
+            //DeliveryAddress copiedAddress = originalAddress;
+            //Console.WriteLine("Copying DeliveryAdress..........");
+            //Console.WriteLine("Before Modification");
+            //Console.WriteLine($"originalAddress:{originalAddress.street}");
+            //Console.WriteLine($"copiedAddress:{copiedAddress.street}");
+            //copiedAddress.street = "Orabi";
+            //Console.WriteLine("======================================");
+            //Console.WriteLine("After Modification");
+            //Console.WriteLine($"originalAddress:{originalAddress.street}");//ElTahrir->not change
+            //Console.WriteLine($"copiedAddress:{copiedAddress.street}"); //Orabi
+
             #endregion
         }
     }

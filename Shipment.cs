@@ -47,7 +47,7 @@ namespace AssignmentOOP1
         #region Constructors
         public Shipment(string trackingCode)
         {
-            if(string.IsNullOrWhiteSpace(trackingCode))
+            if(!string.IsNullOrWhiteSpace(trackingCode))
             TrackingCode = trackingCode;
             Description = "un known";
             Weight = 1;
