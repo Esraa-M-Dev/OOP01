@@ -1,0 +1,84 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace AssignmentOOP1
+{
+    internal struct Shipment
+    {
+        #region Fields
+       // private string trackingCode; //backing field
+        private string description;
+        private decimal weight;
+        private decimal deliveryFee;
+        #endregion
+        #region Properties
+        public string TrackingCode { get; }
+        public string Description
+        {
+            get { return description; }
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                    description = value;
+            }
+        }
+         public decimal Weight
+        {
+            get { return weight; }
+            set
+            {
+                if (value > 0)
+                weight = value;
+            }
+        }
+        public decimal DeliveryFee
+        {
+            get { return deliveryFee; }
+            private set
+            {
+                if (value > 0)
+                deliveryFee = value;
+            }
+        }
+        public DeliveryAddress Destination { get; set; }
+        public decimal EstimatedCost =>DeliveryFee+(Weight*5);
+        #endregion
+        #region Constructors
+        public Shipment(string trackingCode)
+        {
+            if(!string.IsNullOrWhiteSpace(trackingCode))
+            TrackingCode = trackingCode;
+            Description = "un known";
+            Weight = 1;
+            DeliveryFee = 50;
+            Destination = new DeliveryAddress("un known","un known",0);
+        }
+        public Shipment(string trackingCode,string description,decimal weight,decimal deliveryFee,DeliveryAddress destination) : this(trackingCode)
+        {
+            Description = description;
+            Weight = weight;
+            DeliveryFee = deliveryFee;
+            Destination = destination;
+        }
+        #endregion
+        #region methods
+        public void UpdateDeliveryFee(decimal newFee)
+        {
+            if (newFee > 0)
+            DeliveryFee = newFee;
+        }
+        public void PrintShipment()
+        {
+            Console.WriteLine($"TrackingCode:{TrackingCode}");
+            Console.WriteLine($"Description:{Description}");
+            Console.WriteLine($"Weight:{Weight}");
+            Console.WriteLine($"DeliveryFee:{DeliveryFee}");
+            Console.WriteLine($"Destination:{Destination.GetFullAdress()}");
+            Console.WriteLine($"EstimatedCost:{EstimatedCost}");
+           
+            
+        }
+        #endregion
+    }
+}
